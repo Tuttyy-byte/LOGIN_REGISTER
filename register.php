@@ -44,9 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO users (fullname, email, password) VALUES ('$fullname', '$email', '$hashed_password')";
         
         if (mysqli_query($conn, $sql)) {
-            // Store success message in session for better UX
-            $_SESSION['registration_success'] = "Account created successfully! Please login.";
-            header("Location: index.php?show=login");
+            // Registration successful - redirect to login page with success message
+            header("Location: index.php?success=Registration successful! Please login with your credentials.&show=login");
             exit();
         } else {
             $errors[] = "Registration failed: " . mysqli_error($conn);
